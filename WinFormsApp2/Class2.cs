@@ -13,6 +13,11 @@ namespace WinFormsApp2
         private string denumire;
         private decimal pret;
         private int cantitate;
+
+        public Produs()
+        {
+        }
+
         public Produs(int cod, string denumire, decimal pret, int cantitate)
         {
             Cod = cod;
@@ -40,14 +45,25 @@ namespace WinFormsApp2
         //    event PropertyChangedEventHandler PropertyChanged;
         //}
         public event PropertyChangedEventHandler PropertyChanged;
+
+        public int CompareTo(Produs other)
+        {
+            return Denumire.CompareTo(other.Denumire);  
+        }
+
+        public override string? ToString()
+        {
+            return $"{Cod} {Denumire} {Pret} {Cantitate}";
+        }
+
         protected virtual void OnPropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
-        public int CompareTo(Produs other)
-        {
-            return Denumire.CompareTo(other.Denumire);
-        }
+        //public int CompareTo(Produs other)
+        //{
+        //    return Denumire.CompareTo(other.Denumire);
+        //}
 
 
     }
